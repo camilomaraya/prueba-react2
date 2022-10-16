@@ -1,25 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { PizzasProvider } from "./Context/PizzasProvider";
+import Carrito from "./Views/Carrito";
+import Detalle from "./Views/Detalle";
+import Home from "./Views/Home";
+import React from "react";
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <BrowserRouter>
+        <PizzasProvider>
+          <Routes>
+            <Route end path="/" element={<Home />} />
+            <Route path="/pizzas/:id" element={<Detalle />}/>
+            <Route path="/carrito" element={<Carrito />}/>
+          </Routes>
+          </PizzasProvider>
+      </BrowserRouter>
   );
 }
 
-export default App;
+
